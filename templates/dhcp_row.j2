@@ -1,0 +1,12 @@
+zone {{ row }}.somelan {
+    primary 127.0.0.1;
+    key DHCP_UPDATER;
+}
+
+subnet {{ network }} netmask {{ netmask }}  {
+    option subnet-mask {{ netmask }} ;
+    option routers {{ gateway }};
+    option domain-name "{{ row }}.somelan";
+    ddns-domainname "{{ row }}.somelan";
+    range {{ start }} {{ end }};
+}
