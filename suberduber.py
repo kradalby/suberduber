@@ -30,8 +30,9 @@ def get_subnet_address(mask_bits):
     bits = list(map(lambda x: str(int(x,2)), bits))
     return ".".join(bits)
 
-def get_network_attributes(ip_network, mask, row):
+def get_network_attributes(ip_network, mask, row, port):
     attr = {
+        "port": port,
         "row": row,
         "network": str(ip_network[0]),
         "gateway": str(ip_network[1]),
@@ -77,4 +78,4 @@ if __name__ == "__main__":
     row_names = get_rows(rows, per)
 
     for i in range(len(row_names)):
-        print(create_config_from_template(file, get_network_attributes(networks[i], switch_mask_bit, row_names[i])))
+        print(create_config_from_template(file, get_network_attributes(networks[i], switch_mask_bit, row_names[i], i+1)))
