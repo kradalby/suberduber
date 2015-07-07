@@ -1,2 +1,2 @@
 # suberduber
-Tool for creating repetative configuration files based on subnets
+Tool for creating repetitive configuration files based on subnets
