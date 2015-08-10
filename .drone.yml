@@ -1,0 +1,20 @@
+image: evonove/ci
+git:
+  path: github.com/kradalby/gso
+
+script:
+    - pip install tox
+    - tox
+
+notify:
+  email:
+    recipients:
+      - kradalby@kradalby.no
+
+
+deploy:
+  bash:
+    script:
+        - 'pip install ansible'
+        - 'git clone https://github.com/kradalby/plays.git'
+        - 'ansible-playbook -i plays/inventory plays/deploy/gso.yml'
