@@ -7,6 +7,8 @@ Description: Tool for generating bulk of repetitive config files
 
 import argparse
 import ipaddress
+import socket
+import struct
 
 from math import ceil, log
 
@@ -15,6 +17,12 @@ from jinja2 import Template
 # Dev
 # from pprint import pprint
 
+def ip2int(ip):
+    packedIP = socket.inet_aton(ip)
+    return struct.unpack("!L", packedIP)[0]
+
+def int2ip(address):
+    return socket.inet_ntoa(struct.pack('!L', address))
 
 def get_subnet_address(mask_bits):
     bits = []
