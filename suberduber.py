@@ -48,7 +48,7 @@ def get_network_attributes(ip_network, mask, row, port):
         'network': str(ip_network[0]),
         'gateway': str(ip_network[1]),
         'start': str(ip_network[2]),
-        'start_next': str(int2ip(ip2int(ip_network[2]) + 1)),
+        'start_next': str(int2ip(ip2int(str(ip_network[2])) + 1)),
         'end': str(ip_network[-2]),
         'netmask': get_subnet_address(mask),
     }
