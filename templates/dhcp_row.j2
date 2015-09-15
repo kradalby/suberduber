@@ -1,8 +1,3 @@
-zone {{ row }}.somelan {
-    primary 127.0.0.1;
-    key DHCP_UPDATER;
-}
-
 # {{ row }}, port: {{ port }}
 subnet {{ network }} netmask {{ netmask }}  {
     option subnet-mask {{ netmask }} ;
