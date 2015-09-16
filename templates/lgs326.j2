@@ -1,0 +1,16 @@
+config-file-header
+{{ row }}
+v1.1.0.21
+CLI v1.0
+set system 
+@
+hostname {{ row }}
+username admin password encrypted <SECRET> privilege 15 
+snmp-server server
+snmp-server location {{ row }}
+snmp-server contact Kradalby2
+no snmp-server enable traps
+no snmp-server trap authentication
+snmp-server community public ro 192.168.17.4 view Default 
+snmp-server group public v2 read Default 
+!
