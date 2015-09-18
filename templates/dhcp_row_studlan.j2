@@ -5,17 +5,19 @@ subnet {{ network }} netmask {{ netmask }}  {
         deny members of "linksys";
         option subnet-mask {{ netmask }} ;
         option routers {{ gateway }};
-        option domain-name "{{ row }}.somelan";
-        ddns-domainname "{{ row }}.somelan";
+        option domain-name "{{ row }}.trondelan.no";
+        ddns-domainname "{{ row }}.trondelan.no";
         range {{ start_next }} {{ end }};
     }
     pool {
+        default-lease-time 100;
+        max-lease-time 100;
         option subnet-mask {{ netmask }} ;
         option routers {{ gateway }};
         range {{ start }} {{ start }};
         allow members of "linksys";
         on commit {
-            execute("/usr/bin/python3.4", "/derp.py", "{{ row }}.txt", "{{ start }}");
+            execute("/usr/bin/python3.4", "/derp.py", "{{ row }}", "{{ start }}");
         }
     }
 }

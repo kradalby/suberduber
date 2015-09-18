@@ -5,7 +5,7 @@ Tool for creating repetitive configuration files based on subnets
 ## Help
 
     usage: suberduber.py [-h] -r ROWS -s SWITCH_PER_ROW -m MASK -ns NETWORK_START
-                         -f FILE
+                         -t TEMPLATE [-f]
     
     suberduber.py, creating them config files
     
@@ -15,14 +15,15 @@ Tool for creating repetitive configuration files based on subnets
       -s SWITCH_PER_ROW, --switch SWITCH_PER_ROW
       -m MASK, --mask MASK
       -ns NETWORK_START, --network-start NETWORK_START
-      -f FILE, --file FILE
+      -t TEMPLATE, --template TEMPLATE
+      -f, --file
 
 ## Example
 
 Bellow an example with 10 rows, 1 switch per row, network start address 10.0.0.0 and a cisco template.
 
     source env/bin/activate
-    python3 suberduber.py -r 10 -s 1 -m 27 -ns 10.0.0.0 -f templates/kradalby_c3750g.j2
+    python3 suberduber.py -r 10 -s 1 -m 27 -ns 10.0.0.0 -t templates/kradalby_c3750g.j2
 
 ## Template
 
@@ -32,6 +33,7 @@ Available attributes:
     {{ network }}
     {{ gateway }}
     {{ start }}
+    {{ start_next }}
     {{ end }}
     {{ netmask }}
 
