@@ -1,0 +1,87 @@
+delete interfaces ge-0/0/0 unit 0 family ethernet-switching
+set interfaces ge-0/0/0 unit 0 description row-1-1
+set interfaces ge-0/0/0 unit 0 family inet address 193.90.176.1/27
+
+delete interfaces ge-0/0/1 unit 0 family ethernet-switching
+set interfaces ge-0/0/1 unit 0 description row-2-1
+set interfaces ge-0/0/1 unit 0 family inet address 193.90.176.33/27
+
+delete interfaces ge-0/0/2 unit 0 family ethernet-switching
+set interfaces ge-0/0/2 unit 0 description row-3-1
+set interfaces ge-0/0/2 unit 0 family inet address 193.90.176.65/27
+
+delete interfaces ge-0/0/3 unit 0 family ethernet-switching
+set interfaces ge-0/0/3 unit 0 description row-4-1
+set interfaces ge-0/0/3 unit 0 family inet address 193.90.176.97/27
+
+delete interfaces ge-0/0/4 unit 0 family ethernet-switching
+set interfaces ge-0/0/4 unit 0 description row-5-1
+set interfaces ge-0/0/4 unit 0 family inet address 193.90.176.129/27
+
+delete interfaces ge-0/0/5 unit 0 family ethernet-switching
+set interfaces ge-0/0/5 unit 0 description row-6-1
+set interfaces ge-0/0/5 unit 0 family inet address 193.90.176.161/27
+
+delete interfaces ge-0/0/6 unit 0 family ethernet-switching
+set interfaces ge-0/0/6 unit 0 description row-10-1
+set interfaces ge-0/0/6 unit 0 family inet address 193.90.176.193/27
+
+delete interfaces ge-0/0/7 unit 0 family ethernet-switching
+set interfaces ge-0/0/7 unit 0 description row-11-1
+set interfaces ge-0/0/7 unit 0 family inet address 193.90.176.225/27
+
+delete interfaces ge-0/0/8 unit 0 family ethernet-switching
+set interfaces ge-0/0/8 unit 0 description row-12-1
+set interfaces ge-0/0/8 unit 0 family inet address 193.90.177.1/27
+
+delete interfaces ge-0/0/9 unit 0 family ethernet-switching
+set interfaces ge-0/0/9 unit 0 description row-13-1
+set interfaces ge-0/0/9 unit 0 family inet address 193.90.177.33/27
+
+delete interfaces ge-0/0/10 unit 0 family ethernet-switching
+set interfaces ge-0/0/10 unit 0 description row-14-1
+set interfaces ge-0/0/10 unit 0 family inet address 193.90.177.65/27
+
+delete interfaces ge-0/0/11 unit 0 family ethernet-switching
+set interfaces ge-0/0/11 unit 0 description row-15-1
+set interfaces ge-0/0/11 unit 0 family inet address 193.90.177.97/27
+
+delete interfaces ge-0/0/12 unit 0 family ethernet-switching
+set interfaces ge-0/0/12 unit 0 description row-16-1
+set interfaces ge-0/0/12 unit 0 family inet address 193.90.177.129/27
+
+delete interfaces ge-0/0/13 unit 0 family ethernet-switching
+set interfaces ge-0/0/13 unit 0 description row-17-1
+set interfaces ge-0/0/13 unit 0 family inet address 193.90.177.161/27
+
+delete interfaces ge-0/0/14 unit 0 family ethernet-switching
+set interfaces ge-0/0/14 unit 0 description row-18-1
+set interfaces ge-0/0/14 unit 0 family inet address 193.90.177.193/27
+
+delete interfaces ge-0/0/15 unit 0 family ethernet-switching
+set interfaces ge-0/0/15 unit 0 description row-19-1
+set interfaces ge-0/0/15 unit 0 family inet address 193.90.177.225/27
+
+delete interfaces ge-0/0/16 unit 0 family ethernet-switching
+set interfaces ge-0/0/16 unit 0 description row-20-1
+set interfaces ge-0/0/16 unit 0 family inet address 193.90.178.1/27
+
+delete interfaces ge-0/0/17 unit 0 family ethernet-switching
+set interfaces ge-0/0/17 unit 0 description row-24-1
+set interfaces ge-0/0/17 unit 0 family inet address 193.90.178.33/27
+
+delete interfaces ge-0/0/18 unit 0 family ethernet-switching
+set interfaces ge-0/0/18 unit 0 description row-25-1
+set interfaces ge-0/0/18 unit 0 family inet address 193.90.178.65/27
+
+delete interfaces ge-0/0/19 unit 0 family ethernet-switching
+set interfaces ge-0/0/19 unit 0 description row-26-1
+set interfaces ge-0/0/19 unit 0 family inet address 193.90.178.97/27
+
+delete interfaces ge-0/0/20 unit 0 family ethernet-switching
+set interfaces ge-0/0/20 unit 0 description row-27-1
+set interfaces ge-0/0/20 unit 0 family inet address 193.90.178.129/27
+
+delete interfaces ge-0/0/21 unit 0 family ethernet-switching
+set interfaces ge-0/0/21 unit 0 description row-28-1
+set interfaces ge-0/0/21 unit 0 family inet address 193.90.178.161/27
