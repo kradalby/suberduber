@@ -21,13 +21,6 @@ def write_to_file(name, content):
     with open('output/{}'.format(name), 'w') as file:
         file.write(content)
 
-def ip2int(ip):
-    packedIP = socket.inet_aton(ip)
-    return struct.unpack("!L", packedIP)[0]
-
-def int2ip(address):
-    return socket.inet_ntoa(struct.pack('!L', address))
-
 def get_subnet_address(mask_bits):
     bits = []
     string = ''
@@ -52,7 +45,7 @@ def get_network_attributes(ip_network, mask, row, port):
         'network': str(ip_network[0]),
         'gateway': str(ip_network[1]),
         'start': str(ip_network[2]),
-        'start_next': str(int2ip(ip2int(str(ip_network[2])) + 1)),
+        'start_next': str(ip_network[3]),
         'end': str(ip_network[-2]),
         'netmask': get_subnet_address(mask),
     }
