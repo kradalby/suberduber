@@ -3,11 +3,12 @@ import ipaddress
 import json
 import argparse
 import math
+from jinja2 import FileSystemLoader
+from jinja2.environment import Environment
 
 
 class Subnet:
     network = None
-    assigned = False
 
     def __init__(self, size, name):
         self.size = size
@@ -31,58 +32,104 @@ def split_network(network):
     return new_network
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Test xDC Analogue")
-    parser.add_argument('-n', '--network', dest='network_file', default='network.json', action='store', help='File containing network description in JSON format', required=False)
-    
+def create_config_from_template(file, attr):
+    env = Environment()
+    env.loader = FileSystemLoader('../templates')
+    config = env.get_template(file)
+
+    return config.render(attr)
+
+
+def get_network_attributes(subnet, port):
+    attr = {
+        'port': port,
+        'row': subnet.name,
+        'network': str(subnet.network.network_address),
+        'gateway': str(subnet.network[1]),
+        'start': str(subnet.network[2]),
+        'start_next': str(subnet.network[3]),
+        'end': str(subnet.network[-2]),
+        'netmask': subnet.network.netmask,
+    }
+    return attr
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Divide networks based on JSON description")
+    parser.add_argument('-n', '--network', dest='network_file', default='network.json', action='store',
+                        help='File containing network description in JSON format', required=False)
+
     args = parser.parse_args()
-    
+
     with open(args.network_file) as json_file:
         json_data = json.load(json_file)
-    
-    network = ipaddress.ip_network(json_data["network"])
-    total = 0
-    largest_network = 32
-    network_list = []
-    
-    for subnet in json_data["subnets"]:
-        if subnet["number"] == 0:
-            continue
+
+    for part in json_data:
+        network = ipaddress.ip_network(part["network"])
+        total = 0
+        largest_network = 32
+        smallest_network = 0
+        network_list = []
+        print("Dividing {}:".format(network))
+        for subnet in part["subnets"]:
+            if subnet["number"] == 0:
+                continue
+            if "per-row" not in subnet:
+                subnet["per-row"] = 1
+
+            total += int(math.pow(2, 32-subnet["size"]) * subnet["number"] * subnet["per-row"])
+            
+            if subnet["size"] < largest_network:
+                    largest_network = subnet["size"]
+            if subnet["size"] > smallest_network:
+                    smallest_network = subnet["size"]
+            
+            if subnet["number"] > 1:
+                for i in range(0, subnet["number"]):
+                    if subnet["per-row"] > 1:
+                        for j in range(0, subnet["per-row"]):
+                            network_list.append(Subnet(subnet["size"], "{}-{}-{}".format(subnet["name"], i+1, j+1)))
+                    else:
+                        network_list.append(Subnet(subnet["size"], "{}-{}".format(subnet["name"], i+1)))
+            else:
+                network_list.append(Subnet(subnet["size"], subnet["name"]))
         
-        total += int(math.pow(2, 32-subnet["size"]) * subnet["number"])   
-        
-        if subnet["size"] < largest_network:
-                largest_network = subnet["size"]
-        
-        if subnet["number"] > 1:
-            for i in range(1, subnet["number"]+1):
-                network_list.append(Subnet(subnet["size"], "{} {}".format(subnet["name"], i)))
-        else:
-            network_list.append(Subnet(subnet["size"], subnet["name"]))
-    
-    if total > network.num_addresses:
-        print("Can't fit subnets into network :(")
-        exit(1)
-    
-    done = False
-    network = list(network.subnets(new_prefix=largest_network))
-    while not done:
-        if len(network) == 0:
+        if total > network.num_addresses:
             print("Can't fit subnets into network :(")
-            exit(1)
-    
-        for net in network_list:
-            if net.size == largest_network and not net.assigned:
-                net.network = network.pop(0)
-                net.assigned = True
+            return 1
         
-        done = True
-        network = split_network(list(network))
-        largest_network += 1
-        for net in network_list:
-            if net.assigned == False:
-                done = False
-               
-    for net in network_list:
-        print(net)
-    
+        done = False
+        network = list(network.subnets(new_prefix=largest_network))
+        while not done:
+            if len(network) == 0:
+                print("Can't fit subnets into network :(")
+                return 1
+        
+            for net in network_list:
+                if net.size == largest_network and net.network is None:
+                    net.network = network.pop(0)
+
+            largest_network += 1
+            if largest_network > smallest_network:
+                break
+            network = split_network(list(network))
+            done = True
+            for net in network_list:
+                if net.network is None:
+                    done = False
+                    break
+
+        attributes = {
+            "subnets": []
+        }
+        for i in range(len(network_list)):
+            attributes["subnets"].append(get_network_attributes(network_list[i], i+1))
+
+        print(create_config_from_template(part["template"], attributes))
+
+        # print(network)
+
+    return 0
+
+if __name__ == "__main__":
+    main()
