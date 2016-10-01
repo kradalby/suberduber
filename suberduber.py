@@ -7,8 +7,6 @@ Description: Tool for generating bulk of repetitive config files
 
 import argparse
 import ipaddress
-import socket
-import struct
 
 from math import ceil, log
 
@@ -17,9 +15,11 @@ from jinja2 import Template
 # Dev
 # from pprint import pprint
 
+
 def write_to_file(name, content):
     with open('output/{}'.format(name), 'w') as file:
         file.write(content)
+
 
 def get_subnet_address(mask_bits):
     bits = []

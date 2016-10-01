@@ -21,6 +21,7 @@ hosts = {
 
 t = Talkmore('', '')
 
+
 def send(message):
     t.login()
     t.send(crew, message)
