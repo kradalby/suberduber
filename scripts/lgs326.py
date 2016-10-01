@@ -3,6 +3,7 @@ import time
 import sys
 import os
 
+
 def write_string(tn, string, endchar):
     for c in string:
         tn.write(c.encode('ascii'))
@@ -23,12 +24,12 @@ ip = '10.0.0.5'
 
 print('Connecting to host: {}'.format(host))
 tn = telnetlib.Telnet(host)
-#tn.write("vt100\r\n".encode('ascii'))
+# tn.write("vt100\r\n".encode('ascii'))
 
 
 
-#tn.write(user.encode('ascii') + '\t'.encode('ascii'))
-#tn.write(password.encode('ascii') + "\r\n".encode('ascii'))
+# tn.write(user.encode('ascii') + '\t'.encode('ascii'))
+# tn.write(password.encode('ascii') + "\r\n".encode('ascii'))
 
 print('Sending username: {}'.format(user))
 write_string(tn, user, '\t')
@@ -54,4 +55,3 @@ write_string(tn, '', '\t')
 write_string(tn, '', '\r\n')
 
 time.sleep(3)
-
