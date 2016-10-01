@@ -1,25 +1,29 @@
-{
-	"network" : "193.90.176.0/22",
-	"subnets" : [
-		{
-			"size" : 27,
-			"name" : "Deltagerrad",
-			"number" : 22
-		},
-		{
-			"size" : 27,
-			"name" : "Komfortrad",
-			"number" : 4
-		},
-		{
-			"size" : 27,
-			"name" : "Tech",
-			"number" : 2
-		},
-		{
-			"size" : 25,
-			"name" : "Wireless",
-			"number" : 1
-		}
-	]
-}
+[
+	{
+		"network" : "193.90.176.0/21",
+		"template": "dhcp_row.j2",
+		"subnets" : [
+			{
+				"size" : 27,
+				"per-row": 2,
+				"name": "Deltakerrad",
+				"number" : 14
+			},
+			{
+				"size" : 27,
+				"name" : "Komfortrad",
+				"number" : 4
+			},
+			{
+				"size" : 26,
+				"name" : "Tech",
+				"number" : 1
+			},
+			{
+				"size" : 25,
+				"name" : "Wireless",
+				"number" : 1
+			}
+		]
+	}
+]
