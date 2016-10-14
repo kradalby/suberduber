@@ -1,11 +1,11 @@
 [
 	{
 		"network" : "193.90.176.0/21",
-		"template": "dhcp_row.j2",
+		"template": "dhcp_row_studlan.j2",
 		"subnets" : [
 			{
 				"size" : 27,
-				"per-row": 2,
+				"per-row": 1,
 				"name": "Deltakerrad",
 				"number" : 14
 			},
