@@ -1,0 +1,64 @@
+[
+	{
+		"network" : "193.214.32.0/21",
+		"template": "pp25_row_juniper.j2",
+		"subnets" : [
+			{
+				"size" : 27,
+				"per-row": 1,
+				"name": "Deltakerrad",
+				"number" : 22
+			},
+			{
+				"size" : 27,
+				"name" : "Komfortrad",
+				"number" : 4
+			},
+			{
+				"size" : 27,
+				"name" : "Esportscene",
+				"number" : 1
+			},
+			{
+				"size" : 27,
+				"name" : "Arkade",
+				"number" : 1
+			},
+			{
+				"size" : 25,
+				"name" : "Crew media og scene",
+				"number" : 1
+			},
+			{
+				"size" : 23,
+				"name" : "WLAN",
+				"number" : 1
+			},
+			{
+				"size" : 25,
+				"name" : "Servernett",
+				"number" : 1
+			},
+			{
+				"size" : 27,
+				"name" : "Superdesk",
+				"number" : 1
+			},
+			{
+				"size" : 27,
+				"name" : "Inngang kantine og auditorium",
+				"number" : 1
+			},
+			{
+				"size" : 27,
+				"name" : "Linknett",
+				"number" : 1
+			},
+			{
+				"size" : 27,
+				"name" : "Loopbacks",
+				"number" : 1
+			}
+		]
+	}
+]
