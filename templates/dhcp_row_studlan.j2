@@ -17,7 +17,7 @@ subnet {{ network }} netmask {{ netmask }}  {
         range {{ start }} {{ start }};
         allow members of "linksys";
         on commit {
-            execute("/usr/bin/python3.4", "/derp.py", "{{ row }}", "{{ start }}");
+            execute("/usr/local/bin/lgs326.py", "{{ row }}", "{{ start }}");
         }
     }
 }

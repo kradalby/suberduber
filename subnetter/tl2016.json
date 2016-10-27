@@ -1,0 +1,29 @@
+[
+	{
+		"network" : "84.16.204.0/23",
+		"template": "kradalby_c3750g.j2",
+		"subnets" : [
+			{
+				"size" : 27,
+				"per-row": 1,
+				"name": "Deltakerrad",
+				"number" : 11
+			},
+			{
+				"size" : 27,
+				"name" : "Crew",
+				"number" : 1
+			},
+			{
+				"size" : 27,
+				"name" : "Servernett",
+				"number" : 1
+			},
+			{
+				"size" : 27,
+				"name" : "Spett-gaming",
+				"number" : 1
+			}
+		]
+	}
+]
